@@ -69,3 +69,28 @@ ticket_no int (5),
  nonstop char (1)
 );
 show tables;
+
+ALTER TABLE category_header MODIFY cat_desc VARCHAR(50);
+
+CREATE TABLE Student_MPSTME (
+
+student_number INT,
+student_name VARCHAR(100),
+student_address VARCHAR(255),
+student_phone_number VARCHAR(15)
+
+);
+
+alter table Student_MPSTME add primary key (student_number);
+
+create table Student_NMIMS as select student_number, student_name from Student_MPSTME;
+
+rename table Student_MPSTME to Stu_MPSTME;
+
+alter table Stu_MPSTME drop column student_phone_number;
+
+drop table Stu_MPSTME;
+
+alter table Stu_MPSTME add birth_date date;
+
+drop table Stu_MPSTME;
