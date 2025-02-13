@@ -165,3 +165,53 @@ VALUES
 (205, 07, 'Y');
 
 show tables;
+
+SELECT * FROM route_header WHERE origin = 'Madras' AND destination = 'Cochin';
+-- 70022300518 Dhruv Singh 
+
+SELECT origin FROM route_header WHERE origin LIKE 'M%';
+SELECT * FROM route_header WHERE fare BETWEEN 30 AND 50;
+
+
+SELECT origin, fare FROM route_header WHERE route_no > 15;
+
+
+SELECT * FROM place_header WHERE place_name LIKE 'M%';
+
+
+SELECT * FROM route_header WHERE distance BETWEEN 200 AND 400;
+
+
+SELECT * FROM fleet_header WHERE route_id IN (102, 103);
+
+
+SELECT route_id, nonstop FROM route_detail WHERE nonstop = 'N';
+
+
+SELECT * FROM category_header WHERE cat_desc LIKE 's%t';
+
+
+SELECT route_id, route_no, cat_code FROM route_header WHERE cat_code IN (1, 2, 4);
+
+
+SELECT * FROM place_header WHERE bus_station = 'Charminar';
+
+SELECT * FROM route_header WHERE fare < 70 AND distance > 120;
+
+
+SELECT * FROM ticket_detail WHERE sex = 'F' AND age > 10;
+
+
+SELECT route_id, fare, fare * 1.10 AS new_fare FROM route_header;
+
+SELECT * FROM route_header WHERE route_id IN (101, 105, 107);
+
+SELECT * FROM route_header WHERE (origin = 'Madras' AND distance > 300) OR (destination = 'Madras' AND distance < 300);
+
+CREATE TABLE temp_MPSTME AS 
+SELECT place_id, place_name, place_address FROM place_header WHERE place_id BETWEEN 1 AND 4 AND place_name LIKE 'M%';
+
+INSERT INTO temp_MPSTME (place_id, place_name, place_address)
+SELECT place_id, place_name, place_address 
+FROM place_header 
+WHERE place_id BETWEEN 1 AND 4 AND place_name LIKE 'M%';
