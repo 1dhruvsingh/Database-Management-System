@@ -48,3 +48,5 @@ CREATE TABLE BLOOD_BAG
   B_R_ID VARCHAR(5) REFERENCES RECIPIENT(R_ID),
   B_R_Date DATE
   );
+  
+  show tables;
