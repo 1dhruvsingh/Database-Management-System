@@ -198,10 +198,11 @@ WHERE route_id > (SELECT MIN(route_id) FROM route_header WHERE cat_code = 1)
 UNION 
 SELECT DISTINCT fleet_id FROM fleet_header;
 
--- 23. Create read-only view route_vw on table route_header to display route_id, origin, and destination.
+-- dhruvsingh
+
 CREATE VIEW route_vw AS 
 SELECT route_id, origin, destination FROM route_header;
-
+select * from route_vw;
 -- 24. Try to update any record of view route_vw and explain error message.
 UPDATE route_vw SET origin = 'Chennai' WHERE route_id = 101;
 /* This will give an error: "View is not updatable because it lacks a primary key or does not directly reference a base table column." */
@@ -209,16 +210,16 @@ UPDATE route_vw SET origin = 'Chennai' WHERE route_id = 101;
 -- 25. Create view route_vw2 on table route_header with columns route_no, cat_code, origin, and destination.
 CREATE VIEW route_vw2 AS 
 SELECT route_no, cat_code, origin, destination FROM route_header;
-
+-- dhruv singh
 -- 26. Display records of view route_vw2.
-SELECT * FROM route_vw2;
-
+select * from route_vw2;
 -- 27. Try to insert record into view route_vw2 and state the output if possible, else explain error message.
 INSERT INTO route_vw2 (route_no, cat_code, origin, destination) VALUES (50, 1, 'Delhi', 'Mumbai');
 /* This will give an error: "View is not insertable because it does not contain all NOT NULL columns of the base table." */
 
--- 28. Create view route_category_vw to display those routes which belong to category ‘delux’.
+-- dhruv singh
 CREATE VIEW route_category_vw AS 
 SELECT route_no, cat_code, origin, destination 
 FROM route_header 
 WHERE cat_code = (SELECT cat_code FROM category_header WHERE cat_desc = 'delux');
+select * from route_category_vw;
